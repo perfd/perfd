@@ -1,0 +1,32 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: reqRate_suite_3_dev_random
+  appName: microservice-go-fasthttp
+  appVersion: 0.0.1
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: False
+  verbosity: 1
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 8
+  metaConfig:
+    numRun: 20
+  resourceConfig:
+    numServerInstance: 2
+    numClientInstance: 5
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    frameworkName: go-fasthttp
+    fileSize: 1000
+    fileSource: /dev/urandom
+    numClientThread: 4
+    reqRate: [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+    numConn: 32
+    duration: 30

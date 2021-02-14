@@ -1,0 +1,32 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: numServer_linear_1_10_suite_2
+  appName: memcached
+  appVersion: 1.4.33
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: True
+  verbosity: 1
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 20
+  metaConfig:
+    numRun: 20
+  resourceConfig:
+    numServerInstance: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    numClientInstance: 3
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    keySize: 30
+    valueSize: 200
+    serverThread: 4
+    clientThread: 4
+    runTime: 10
+    waitTime: 2
+    warmupTime: 2

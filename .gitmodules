@@ -1,0 +1,6 @@
+[submodule "thirdparty/microps"]
+	path = thirdparty/microps
+	url = https://github.com/silveryfu/microps.git
+[submodule "hack/kops"]
+	path = hack/kops
+	url = https://github.com/kubernetes/kops.git

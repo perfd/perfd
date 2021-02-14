@@ -1,0 +1,39 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: version_test_2
+  appName: influxdb
+  appVersion: 1.7.10
+  resultBucket: perfd-ev
+  logBucket: perfd-ev-log
+  autoscale: True
+  clusterdown: True
+  verbosity: 1
+  debug: True
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 15
+  metaConfig:
+    tag: ['1.8', '1.7.3', '1.6.2-alpine', '1.6.0-alpine', '1.4.2-alpine', '1.7.2', '1.7.7-alpine', '1.6.3-alpine', '1.5.2', '1.7.3-alpine', '1.4.3-alpine', '1.6.4-alpine', '1.6.3', '1.5.4', '1.5.3', '1.7.5-alpine', '1.6-alpine', '1.7.10-alpine', '1.7.10', '1.7.9', '1.5.3-alpine', '1.6', '1.5-alpine', '1.7-alpine', '1.7.1', '1.7.4-alpine', '1.8.0', '1.7.0', '1.6.0', '1.7.8', '1.4.1', '1.6.6', '1.5.4-alpine', '1.7.5', '1.5', '1.4', '1.5.2-alpine', '1.6.2', '1.7.7', '1.6.1', '1.7.6-alpine', '1.7.0-alpine', '1.5.0', '1.8-alpine', '1.7.4', '1.7', '1.6.4', '1.7.9-alpine', '1.5.0-alpine', '1.7.6', '1.4-alpine', '1.4.0', '1.6.1-alpine', '1.6.6-alpine', '1.4.1-alpine', '1.6.5', '1.7.8-alpine', '1.7.1-alpine', '1.4.2', '1.7.2-alpine', '1.4.3', '1.8.0-alpine', '1.5.1-alpine', '1.6.5-alpine', '1.4.0-alpine', '1.5.1']
+#    tag: ["1.8"]
+    runner: docker
+    numRun: 10
+  resourceConfig:
+    numServerInstance: [1]
+    numClientInstance: 4
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    batchSize: 5000
+    numReq: 5
+    numPointPerSeries: 300
+    fieldPerPoint: 1
+    clientConcurrency: 1
+    duration: 10
+    shardDuration: 7d
+    numMeasurement: 1
+    tagCard: "10,10,10"
+    writeConsistency: "any"

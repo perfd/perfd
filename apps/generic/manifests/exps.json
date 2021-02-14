@@ -1,0 +1,864 @@
+{
+  "sort": {
+    "meta": {
+      "name": "sparkperf-sort",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-terasort-dataset-size-5ne",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-terasort-scale-out",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-terasort-instance-type-5ne",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-terasort-dataset-size-5ne-after-lw0",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-terasort-scale-out-after",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-terasort-instance-type-5ne-after-lw0-new",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "pagerank": {
+    "meta": {
+      "name": "sparkperf-pagerank",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-pagerank-dataset-size-5ne",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 0,
+          "max_value": 400000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-pagerank-scale-out",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-pagerank-instance-type-5ne",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-pagerank-dataset-size-5ne-after-1",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 0,
+          "max_value": 400000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-pagerank-scale-out-baseline-spkmod-ready-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 1,
+          "max_value": 20,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-pagerank-instance-type-5ne-after-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "tf_serv": {
+    "meta": {
+      "name": "tf",
+      "app_type": "tf"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "perfd-tensorflow-dataset-size-nc-10-ns-5-cluster",
+          "feature": [
+            "req_rate"
+          ],
+          "target_feature": "throughput",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-tensorflow-scale-out-nc10-c10-lb-cluster",
+          "feature": [
+            "num_server"
+          ],
+          "target_feature": "throughput",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-tensorflow-instance-type-5-ne",
+          "target_feature": "throughput",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "perfd-tensorflow-dataset-size-nc-10-ns-5-local",
+          "feature": [
+            "req_rate"
+          ],
+          "target_feature": "throughput",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "perfd-tensorflow-scale-out-nc10-c10-lb-local",
+          "feature": [
+            "num_server"
+          ],
+          "target_feature": "throughput",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-tensorflow-instance-type-5-ne-after",
+          "target_feature": "throughput",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "example.LR": {
+    "meta": {
+      "name": "spark-org.apache.spark.examples.SparkLR",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-sparklr-dataset-size-5ne",
+          "feature": [
+            "num_point"
+          ],
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-sparklr-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 1,
+          "max_value": 20,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-sparklr-instance-type-5ne",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-sparklr-dataset-size-5ne",
+          "feature": [
+            "num_point"
+          ],
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-sparklr-mem-1100-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 1,
+          "max_value": 20,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-sparklr-instance-type-5ne-after",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "clustering.KMeans": {
+    "meta": {
+      "name": "sparkperf-clustering.KMeans",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-sql-perf-num-executor-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spkperf-num-executor-commit-no-exio",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "memcached": {
+    "meta": {
+      "name": "memcached",
+      "app_type": "perfd"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "keySize_linear_1_10_suite_1_var",
+          "feature": [
+            "keySize"
+          ],
+          "target_feature": "avg_lat_read",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numServer_linear_1_10_suite_1_var",
+          "feature": [
+            "numServerInstance"
+          ],
+          "target_feature": "avg_lat_read",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_suite_1_lat_log",
+          "feature": "serverInstanceType",
+          "target_feature": "avg_lat_read",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "keySize_linear_1_10_suite_1",
+          "feature": [
+            "keySize"
+          ],
+          "target_feature": "avg_lat_read",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numServer_linear_1_5_suite_1",
+          "feature": [
+            "numServerInstance"
+          ],
+          "target_feature": "avg_lat_read",
+          "min_value": 1,
+          "max_value": 5,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_suite_1_lat_log",
+          "feature": "serverInstanceType",
+          "target_feature": "avg_lat_read",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "nginx": {
+    "meta": {
+      "name": "nginx",
+      "app_type": "perfd"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "reqRate_linear_1000_10000_suite_1",
+          "feature": [
+            "reqRate"
+          ],
+          "target_feature": "lat_50pc",
+          "min_value": 1000,
+          "max_value": 10000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numWorkerProc_linear_1_16",
+          "feature": [
+            "numWorkerProc"
+          ],
+          "target_feature": "lat_50pc",
+          "min_value": 1,
+          "max_value": 16,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_nginx",
+          "feature": "serverInstanceType",
+          "target_feature": "lat_50pc",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "reqRate_linear_1000_10000_suite_1",
+          "feature": [
+            "reqRate"
+          ],
+          "target_feature": "lat_50pc",
+          "min_value": 1000,
+          "max_value": 10000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numWorkerProc_linear_1_16_c59x",
+          "feature": [
+            "numWorkerProc"
+          ],
+          "target_feature": "lat_50pc",
+          "min_value": 1,
+          "max_value": 16,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_nginx",
+          "feature": "serverInstanceType",
+          "target_feature": "lat_50pc",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "influxdb": {
+    "meta": {
+      "name": "influxdb",
+      "app_type": "perfd"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "numPointPerSeries_suite_1",
+          "feature": [
+            "numPointPerSeries"
+          ],
+          "target_feature": "query_latency_mean",
+          "min_value": 100,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numServer_suite_1",
+          "feature": [
+            "numServerInstance"
+          ],
+          "target_feature": "query_latency_mean",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_suite_1",
+          "feature": "serverInstanceType",
+          "target_feature": "query_latency_mean",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "numPointPerSeries_suite_1",
+          "feature": [
+            "numPointPerSeries"
+          ],
+          "target_feature": "query_latency_mean",
+          "min_value": 100,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numServer_suite_1",
+          "feature": [
+            "numServerInstance"
+          ],
+          "target_feature": "query_latency_mean",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_suite_1",
+          "feature": "serverInstanceType",
+          "target_feature": "query_latency_mean",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "microservice-go-fasthttp": {
+    "meta": {
+      "name": "microservice-go-fasthttp",
+      "app_type": "perfd"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "reqRate_suite_3",
+          "feature": [
+            "reqRate"
+          ],
+          "target_feature": "lat_mean",
+          "min_value": 1000,
+          "max_value": 10000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numServer_suite_3",
+          "feature": [
+            "numServerInstance"
+          ],
+          "target_feature": "lat_mean",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_suite_3",
+          "feature": "serverInstanceType",
+          "target_feature": "lat_mean",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "reqRate_suite_3",
+          "feature": [
+            "reqRate"
+          ],
+          "target_feature": "lat_mean",
+          "min_value": 1000,
+          "max_value": 10000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "numServer_suite_3",
+          "feature": [
+            "numServerInstance"
+          ],
+          "target_feature": "lat_mean",
+          "min_value": 1,
+          "max_value": 10,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "instanceType_suite_3",
+          "feature": "serverInstanceType",
+          "target_feature": "lat_mean",
+          "groupby_index": "serverInstanceType",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "classification.LR": {
+    "meta": {
+      "name": "sparkperf-classification.LogisticRegression",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-sql-perf-num-executor-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spkperf-num-executor-commit-no-exio",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "feature.Word2Vec": {
+    "meta": {
+      "name": "sparkperf-feature.Word2Vec",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-sql-perf-num-executor-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spkperf-num-executor-commit-no-exio",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "fpm.FPGrowth": {
+    "meta": {
+      "name": "sparkperf-fpm.FPGrowth",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-sql-perf-num-executor-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spkperf-num-executor-commit-no-exio",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  },
+  "recommend.ALS": {
+    "meta": {
+      "name": "sparkperf-recommendation.ALS",
+      "app_type": "spark"
+    },
+    "spec": {
+      "before": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spark-sql-perf-num-executor-commit",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      },
+      "after": {
+        "input_scale": {
+          "bucket": "microps-spark-perf-dataset-size-mem-commit",
+          "feature": [
+            "dataset_size"
+          ],
+          "min_value": 1,
+          "max_value": 1000,
+          "values": []
+        },
+        "scale_out": {
+          "bucket": "microps-spkperf-num-executor-commit-no-exio",
+          "feature": [
+            "num_executor"
+          ],
+          "min_value": 4,
+          "max_value": 9,
+          "values": []
+        },
+        "scale_up": {
+          "bucket": "microps-spark-sql-perf-instance-type-commit-1",
+          "feature": "static",
+          "groupby_index": "API_Name",
+          "min_value": "",
+          "max_value": "",
+          "values": []
+        }
+      }
+    }
+  }
+}

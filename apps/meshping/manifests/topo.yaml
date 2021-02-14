@@ -1,0 +1,27 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: topo
+  appName: meshping
+  appVersion: 0.0.1
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: False
+  verbosity: 1
+  debug: True
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 20
+  metaConfig:
+    numRun: 1
+  resourceConfig:
+    numServerInstance: 10
+    numClientInstance: 10
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    mode: pairwise

@@ -1,0 +1,19 @@
+apiVersion: perfd/v1
+kind: TrialIndex
+metadata:
+  name: all_trials
+spec:
+  # TODO: legacy field
+  - name: foo
+    appName: foo
+    trialName: foo
+    type: foo
+    feature: bar
+    targetFeature: bar
+    featureValue: bar
+    legacy: no
+    mod: no
+
+
+
+

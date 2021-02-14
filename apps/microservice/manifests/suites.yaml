@@ -1,0 +1,35 @@
+apiVersion: perfd/v1
+kind: trialSuite
+metadata:
+  name: microservice_trial_setups
+  appName: microservice
+  appVersion: 0.0.1
+  sharedConfig:
+spec:
+  - name: suite_1
+    numServerInstance: 2
+    numClientInstance: 2
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.4xlarge
+    numClientThread: 16
+    reqRate: 10000
+    numConn: 20
+    duration: 30
+  - name: suite_2
+    numServerInstance: 2
+    numClientInstance: 2
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.4xlarge
+    numClientThread: 16
+    reqRate: 100000
+    numConn: 20
+    duration: 30
+  - name: suite_3
+    numServerInstance: 2
+    numClientInstance: 5
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+    numClientThread: 4
+    reqRate: 5000
+    numConn: 32
+    duration: 30

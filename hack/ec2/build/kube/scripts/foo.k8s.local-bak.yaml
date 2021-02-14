@@ -1,0 +1,226 @@
+apiVersion: kops/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: 2018-04-22T23:01:46Z
+  name: foo.k8s.local
+spec:
+  api:
+    loadBalancer:
+      type: Public
+  docker:
+      storage: overlay2
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://foo-state-store/foo.k8s.local
+  etcdClusters:
+  - etcdMembers:
+    - instanceGroup: master-us-west-1a
+      name: a
+    name: main
+  - etcdMembers:
+    - instanceGroup: master-us-west-1a
+      name: a
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: https://foo-binary-store.s3.amazonaws.com/kubernetes/dev/v1.10.0/
+  kubeAPIServer:
+    admissionControl:
+    - NamespaceLifecycle
+    - LimitRanger
+    - ServiceAccount
+    - PersistentVolumeLabel
+    - DefaultStorageClass
+    - DefaultTolerationSeconds
+    - MutatingAdmissionWebhook
+    - ValidatingAdmissionWebhook
+    - ResourceQuota
+    - NodeRestriction
+    - Priority
+  masterPublicName: api.foo.k8s.local
+  networkCIDR: 172.20.0.0/16
+  networking:
+    kubenet: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+  - cidr: 172.20.32.0/19
+    name: us-west-1a
+    type: Public
+    zone: us-west-1a
+  topology:
+    dns:
+      type: Public
+    masters: public
+    nodes: public
+  kubeAPIServer:
+    admissionControl:
+    - NamespaceLifecycle
+    - LimitRanger
+    - ServiceAccount
+    - PersistentVolumeLabel
+    - DefaultStorageClass
+    - DefaultTolerationSeconds
+    - MutatingAdmissionWebhook
+    - ValidatingAdmissionWebhook
+    - ResourceQuota
+    - NodeRestriction
+    - Priority
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-04-22T23:01:46Z
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: master-us-west-1a
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: m4.2xlarge
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-us-west-1a
+  role: Master
+  subnets:
+  - us-west-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: '2018-10-17T07:53:26Z'
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: nodes.m4.large
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: m4.large
+  maxSize: 0
+  minSize: 0
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.m4.large
+  role: Node
+  rootVolumeSize: 64
+  rootVolumeType: gp2
+  subnets:
+  - us-west-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: '2018-10-17T07:53:26Z'
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: nodes.m4.4xlarge
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: m4.4xlarge
+  maxSize: 0
+  minSize: 0
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.m4.4xlarge
+  role: Node
+  rootVolumeSize: 64
+  rootVolumeType: gp2
+  subnets:
+  - us-west-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: '2018-10-17T07:53:26Z'
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: nodes.r4.large
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: r4.large
+  maxSize: 0
+  minSize: 0
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.r4.large
+  role: Node
+  rootVolumeSize: 64
+  rootVolumeType: gp2
+  subnets:
+  - us-west-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: '2018-10-17T07:53:26Z'
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: nodes.r4.4xlarge
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: r4.4xlarge
+  maxSize: 0
+  minSize: 0
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.r4.4xlarge
+  role: Node
+  rootVolumeSize: 64
+  rootVolumeType: gp2
+  subnets:
+  - us-west-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: '2018-10-17T07:53:26Z'
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: nodes.c4.large
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: c4.large
+  maxSize: 0
+  minSize: 0
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.c4.large
+  role: Node
+  rootVolumeSize: 64
+  rootVolumeType: gp2
+  subnets:
+  - us-west-1a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: '2018-10-17T07:53:26Z'
+  labels:
+    kops.k8s.io/cluster: foo.k8s.local
+  name: nodes.c4.4xlarge
+spec:
+  image: kope.io/k8s-1.8-debian-jessie-amd64-hvm-ebs-2018-02-08
+  machineType: c4.4xlarge
+  maxSize: 0
+  minSize: 0
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.c4.4xlarge
+  role: Node
+  rootVolumeSize: 64
+  rootVolumeType: gp2
+  subnets:
+  - us-west-1a

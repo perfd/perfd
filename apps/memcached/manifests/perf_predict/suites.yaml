@@ -1,0 +1,42 @@
+apiVersion: perfd/v1
+kind: trialSuite
+metadata:
+  name: memcached_trial_setups
+  appName: memcached
+  appVersion: 1.4.33
+  sharedConfig:
+    runTime: 10
+    waitTime: 2
+    warmupTime: 2
+spec:
+  - name: suite_1
+    serverInstanceType: c5.xlarge
+    numServerInstance: 1
+    serverThread: 4
+    clientInstanceType: c5.xlarge
+    numClientInstance: 1
+    clientThread: 1
+    keySize: 30
+    valueSize: 200
+  - name: suite_2
+    serverInstanceType: c5.xlarge
+    numServerInstance: 2
+    serverThread: 4
+    clientInstanceType: c5.xlarge
+    numClientInstance: 3
+    clientThread: 4
+    keySize: 30
+    valueSize: 200
+   - name: suite_3
+    serverInstanceType: c5.xlarge
+    numServerInstance: 5
+    serverThread: 4
+    clientInstanceType: c5.4xlarge
+    numClientInstance: 5
+    clientThread: 16
+    keySize: 30
+    valueSize: 200
+
+
+
+

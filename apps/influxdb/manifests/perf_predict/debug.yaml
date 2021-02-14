@@ -1,0 +1,36 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: debug
+  appName: influxdb
+  appVersion: 1.7.10
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: False
+  verbosity: 1
+  debug: True
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 15
+  metaConfig:
+    numRun: 1
+  resourceConfig:
+    numServerInstance: [1, 2, 3, 4, 5]
+    numClientInstance: 4
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    batchSize: 5000
+    numReq: 5
+    numPointPerSeries: 100
+    fieldPerPoint: 1
+    clientConcurrency: 1
+    duration: 10
+    shardDuration: 7d
+    numMeasurement: 1
+    tagCard: "10,10,10"
+    writeConsistency: "any"

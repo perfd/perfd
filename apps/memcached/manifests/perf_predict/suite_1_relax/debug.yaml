@@ -1,0 +1,34 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: debug_relax
+  appName: memcached
+  appVersion: 1.4.33
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: False
+  verbosity: 1
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: default
+      instanceType: c5.xlarge
+      numInstance: 12
+  metaConfig:
+    numRun: 5
+  resourceConfig:
+    numServerInstance: 1
+    numClientInstance: 4
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    keySize: [20]
+#    keySizeDist: "fixed|uniform:10|normal:5,2|exponential:1"]
+    valueSize: [1000000]
+    serverThread: 4
+    clientThread: 4
+    runTime: 10
+    waitTime: 2
+    warmupTime: 2
+

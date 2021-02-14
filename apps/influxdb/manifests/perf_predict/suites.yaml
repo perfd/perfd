@@ -1,0 +1,23 @@
+apiVersion: perfd/v1
+kind: trialSuite
+metadata:
+  name: influxdb_trial_setups
+  appName: influxdb
+  appVersion: 1.7.10
+  sharedConfig:
+spec:
+  - name: suite_1
+    numServerInstance: 5
+    numClientInstance: 4
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+    numReq: 5
+    numPointPerSeries: 100
+    fieldPerPoint: 1
+    clientConcurrency: 1
+    duration: 10
+    shardDuration: 7d
+    numMeasurement: 1
+    tagCard: "10,10,10"
+    writeConsistency: "any"
+    batchSize: 5000

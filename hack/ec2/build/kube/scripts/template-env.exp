@@ -1,0 +1,10 @@
+id={{name}}
+
+export KUBE_ROOT=/usr/local/k8s
+export NAME=$id.k8s.local
+export AWS_REGION={{region}}
+export KOPS_STATE_STORE_NAME=$id-state-store
+export KOPS_STATE_STORE=s3://$id-state-store
+export KUBE_BINARY_STORE_NAME=$id-binary-store
+export KUBE_BINARY_STORE=s3://$id-binary-store
+export KUBE_VERSION=v1.12.0

@@ -1,0 +1,33 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: lr2_inputScale_dataset
+  appName: spark
+  sparkBench: spark-sql-perf
+  appVersion: 2.4.0
+  resultBucket: perfd
+  logBucket: perfd-spark-log
+  autoscale: True
+  clusterdown: False
+  verbosity: 1
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 30
+  metaConfig:
+    numRun: 10
+  resourceConfig:
+    numServerInstance: 2
+    numClientInstance: 0
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    appName: clustering.KMeans
+    numExecutor: 1
+    numPartition: 64
+    driverAdaptiveGC: True
+    inputScale: [1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+#    inputScale: [500]
+    randomSeed: random

@@ -1,0 +1,35 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: reqRate_linear_1000_10000_suite_1_dev_random
+  appName: nginx
+  appVersion: 1.10.3
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: True
+#  clusterdown: False
+  verbosity: 1
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: dedicated
+      instanceType: c5.xlarge
+      numInstance: 6
+  metaConfig:
+    numRun: 20
+#    numRun: 1
+  resourceConfig:
+    numServerInstance: 1
+    numClientInstance: 4
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    fileSize: 1000
+    fileSource: /dev/urandom
+    reqRate: [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+#    reqRate: [1000]
+    numWorkerProc: 1
+    numConn: 50
+    duration: 30
+    numClientThread: 1

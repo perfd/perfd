@@ -1,0 +1,3 @@
+suite_1:
+  numServerInstance: 1
+  numClientInstance: 4

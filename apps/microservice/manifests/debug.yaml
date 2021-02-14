@@ -1,0 +1,31 @@
+apiVersion: perfd/v1
+kind: trialConfig
+metadata:
+  name: debug
+  appName: microservice-go-fasthttp
+  appVersion: 0.0.1
+  resultBucket: perfd
+  logBucket: perfd-log
+  autoscale: True
+  clusterdown: False
+  verbosity: 1
+  debug: True
+spec:
+  instanceGroup:
+    - image: 238764668013/perfd-generic
+      tenancy: default
+      instanceType: c5.xlarge
+      numInstance: 10
+  metaConfig:
+    numRun: 1
+  resourceConfig:
+    numServerInstance: [1, 2, 3, 4, 5]
+    numClientInstance: 5
+    serverInstanceType: c5.xlarge
+    clientInstanceType: c5.xlarge
+  appConfig:
+    frameworkName: go-fasthttp  # akka-http
+    numClientThread: 4
+    reqRate: 5000
+    numConn: 32
+    duration: 30

@@ -1,0 +1,110 @@
+apiVersion: kops/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: 2018-04-22T23:01:46Z
+  name: {{name}}.k8s.local
+spec:
+  api:
+    loadBalancer:
+      type: Public
+  docker:
+      version: 18.06.1
+      storage: overlay2
+  authorization:
+    rbac: {}
+  channel: stable
+  cloudProvider: aws
+  configBase: s3://{{name}}-state-store/{{name}}.k8s.local # TODO: generate this cluster config from the core config file (e.g., env.exp)
+  etcdClusters:
+  - etcdMembers:
+    - instanceGroup: master-{{region}}
+      name: a
+    name: main
+  - etcdMembers:
+    - instanceGroup: master-{{region}}
+      name: a
+    name: events
+  iam:
+    allowContainerRegistry: true
+    legacy: false
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: 1.14.0
+  kubeAPIServer:
+    runtimeConfig:
+        autoscaling/v2beta1: "true"
+    admissionControl:
+    - NamespaceLifecycle
+    - LimitRanger
+    - ServiceAccount
+    - PersistentVolumeLabel
+    - DefaultStorageClass
+    - DefaultTolerationSeconds
+    - MutatingAdmissionWebhook
+    - ValidatingAdmissionWebhook
+    - ResourceQuota
+    - NodeRestriction
+    - Priority
+#  kubelet:
+#    enableCustomMetrics: true
+# TODO: enable parallel pull
+  kubeControllerManager:
+    horizontalPodAutoscalerUseRestClients: true
+  masterPublicName: api.{{name}}.k8s.local
+  networkCIDR: 172.20.0.0/16
+  networking:
+    kubenet: {}
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+  - cidr: 172.20.32.0/19
+    name: {{region}}a  # the subnet needs to be the name of the availability zone and not the region; default to zone "a"
+    type: Public
+    zone: {{region}}a
+  topology:
+    dns:
+      type: Public
+    masters: public
+    nodes: public
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-04-22T23:01:46Z
+  labels:
+    kops.k8s.io/cluster: {{name}}.k8s.local
+  name: master-{{region}}
+spec:
+  image: 238764668013/k8s-worker
+  machineType: m4.2xlarge
+  maxSize: 1
+  minSize: 1
+  nodeLabels:
+    kops.k8s.io/instancegroup: master-{{region}}
+  role: Master
+  subnets:
+  - {{region}}a
+
+---
+
+apiVersion: kops/v1alpha2
+kind: InstanceGroup
+metadata:
+  creationTimestamp: 2018-04-22T23:01:46Z
+  labels:
+    kops.k8s.io/cluster: {{name}}.k8s.local
+  name: nodes.m4.2xlarge.prom
+spec:
+  image: 238764668013/k8s-worker
+  machineType: m4.2xlarge
+  maxSize: 1
+  minSize: 1
+#  tenancy: dedicated
+  nodeLabels:
+    kops.k8s.io/instancegroup: nodes.m4.2xlarge.prom
+  role: Node
+  subnets:
+  - {{region}}a
